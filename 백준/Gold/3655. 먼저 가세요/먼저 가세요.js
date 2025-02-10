@@ -36,13 +36,14 @@ rl.on("close", () => {
 
     groups.sort((a, b) => a.lastIndex - b.lastIndex);
 
+		// 계산 로직
     let ans = 0;
     for (let i = 0; i < N; i++) {
-      const current = groups[i].name;
-      const groupCnt = peopleCnt[current];
+     const current = groups[i].name; // 현재 문자
+		 const groupCnt = peopleCnt[current]; // 현재 문자 그룹 크기
 
-      const lastGroupIdx = i + groupCnt - 1;
-      i = lastGroupIdx;
+		 const lastGroupIdx = i + groupCnt - 1; // 그룹의 끝 위치
+		 i = lastGroupIdx; // 다음 그룹으로 점프
 
       ans += 5 * (lastIdx[current] - lastGroupIdx) * groupCnt;
     }
