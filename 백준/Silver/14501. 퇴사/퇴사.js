@@ -9,22 +9,21 @@ let maxProfit = 0;
 
 // 백트래킹 DFS 함수
 function dfs(day, profit) {
-    // 📌 종료 조건: 날짜가 N을 넘으면 탐색 종료
     if (day >= N) {
         maxProfit = Math.max(maxProfit, profit);
         return;
     }
 
-    const [Ti, Pi] = schedule[day];
-
-    // ✅ 1. 상담을 진행하는 경우
-    if (day + Ti <= N) {
-        dfs(day + Ti, profit + Pi);
+    // 상담을 진행하는 경우
+    if (day + schedule[day][0] <= N) {
+        dfs(day + schedule[day][0], profit + schedule[day][1]);
     }
 
-    // ✅ 2. 상담을 진행하지 않는 경우
+    // 상담을 진행하지 않는 경우
     dfs(day + 1, profit);
 }
+
+
 
 
 // 탐색 시작
